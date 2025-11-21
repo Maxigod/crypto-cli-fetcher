@@ -1,3 +1,4 @@
+import json
 from typing import Dict, Any
 
 
@@ -10,3 +11,14 @@ def format_message(data: Dict[str, Any]) -> str:
 	price = data['quotes']['USD']['price']
 
 	return f"{name} ({symbol}): ${price:,.2f} USD"
+
+def save_to_json(data: Dict[str, Any], filename: str):
+	"""
+	Guarda los datos en un archivo JSON local.
+	"""
+	try:
+		with open(filename, 'w', encoding='utf-8') as f:
+			json.dump(data, f, indent=4)
+			print(f"Datos guardados exitosamente en {filename}")
+	except IOError as e:
+		print(f"Error al escribir el archivo: {e}")
