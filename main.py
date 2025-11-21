@@ -25,6 +25,12 @@ def parse_arguments():
         help="Muestra la respuesta completa JSON sin formato."
     )
 
+    parser.add_argument(
+        '--save', '-s',
+        type=str,
+        help='Nombre del archivo JSON para guardar el resultado (ej: data.json)'
+    )
+
     return parser.parse_args()
 
 def run():
@@ -42,6 +48,11 @@ def run():
     if not data:
         print("Error: No se encontraron datos para '{coin_id}'. Verifica el ID.")
         sys.exit(1) # Salimos con código de error
+
+    if args.save:
+        # Pasamos el nombre del archivo que el usuario escribió
+        from src.utils import save_to_json
+        save_to_json(data, args.save)
 
     if args.raw:
         print(data)    
