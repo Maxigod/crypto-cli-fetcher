@@ -2,7 +2,18 @@ import sys
 from src.api import get_crypto_data
 from src.utils import format_message
 import argparse
+import logging
 
+
+# Los logs se guardarán en un archivo y también se mostrarán en consola
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler("execution.log"), # guardar en archivo
+        logging.StreamHandler(sys.stdout) # mostrar en consola
+    ]
+)
 
 def parse_arguments():
     """
@@ -40,13 +51,13 @@ def run():
     args = parse_arguments()
     coin_id = args.coin
     
-    print(f"🚀 Consultando datos para: {coin_id}...")
+    logging.info(f"Consultando datos para: {coin_id}")
     
     # 1. Extract
     data = get_crypto_data(coin_id)
     
     if not data:
-        print("Error: No se encontraron datos para '{coin_id}'. Verifica el ID.")
+        logging.error(f"Error: No se encontraron datos para '{coin_id}'. Verifica el ID.")
         sys.exit(1) # Salimos con código de error
 
     if args.save:

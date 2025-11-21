@@ -1,6 +1,6 @@
 import json
 from typing import Dict, Any
-
+import logging
 
 def format_message(data: Dict[str, Any]) -> str:
 	"""
@@ -19,6 +19,6 @@ def save_to_json(data: Dict[str, Any], filename: str):
 	try:
 		with open(filename, 'w', encoding='utf-8') as f:
 			json.dump(data, f, indent=4)
-			print(f"Datos guardados exitosamente en {filename}")
+			logging.info(f"Datos guardados exitosamente en {filename}")
 	except IOError as e:
-		print(f"Error al escribir el archivo: {e}")
+		logging.error(f"Error al escribir el archivo: {e}")
