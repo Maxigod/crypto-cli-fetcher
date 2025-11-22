@@ -1,2 +1,4 @@
 py_env/
 execution.log
+bitcoin_hoy.json
+src/__pycache__

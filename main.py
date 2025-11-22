@@ -44,6 +44,7 @@ def parse_arguments():
 
     return parser.parse_args()
 
+
 def run():
     """
     Función principal que orquesta el flujo del programa.

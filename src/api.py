@@ -2,6 +2,7 @@ import requests
 from typing import Dict, Any, Optional
 import logging
 
+
 def get_crypto_data(coin_id: str) -> Optional[Dict[str, Any]]:
 	"""
 	Consulta la API de CoinPaprika para obtener datos de una moneda.
